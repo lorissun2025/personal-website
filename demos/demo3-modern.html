@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>六木先生 - AI产品经理</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #fafafa;
+        }
+
+        /* Header */
+        header {
+            background: #fff;
+            padding: 24px 0;
+            border-bottom: 1px solid #e8e8e8;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1a1a1a;
+        }
+
+        nav {
+            display: flex;
+            gap: 32px;
+        }
+
+        nav a {
+            color: #666;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: #1a1a1a;
+        }
+
+        /* Hero */
+        .hero {
+            padding: 100px 0;
+            background: #fff;
+            border-bottom: 1px solid #e8e8e8;
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .hero-text {
+            flex: 1;
+        }
+
+        .hero-label {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 24px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 {
+            font-size: 52px;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            letter-spacing: -0.03em;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 32px;
+            line-height: 1.7;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+        }
+
+        .btn {
+            padding: 14px 28px;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: #f5f5f5;
+            color: #1a1a1a;
+        }
+
+        .btn-secondary:hover {
+            background: #e8e8e8;
+        }
+
+        .hero-image {
+            flex: 0 0 350px;
+            height: 350px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 120px;
+            font-weight: 700;
+        }
+
+        /* Section */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            background: #f5f5f5;
+            color: #666;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 16px;
+        }
+
+        .section-header h2 {
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 12px;
+            letter-spacing: -0.02em;
+        }
+
+        .section-header p {
+            color: #666;
+            font-size: 16px;
+        }
+
+        /* Cards Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 32px;
+            border: 1px solid #e8e8e8;
+            transition: all 0.3s;
+        }
+
+        .card:hover {
+            border-color: #667eea;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+        }
+
+        .card-icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .card h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .card p {
+            color: #666;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        .card-footer {
+            display: flex;
+            gap: 8px;
+            margin-top: 20px;
+        }
+
+        .card-tag {
+            background: #f5f5f5;
+            color: #666;
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        /* Article Cards */
+        .article-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 28px;
+            border: 1px solid #e8e8e8;
+            transition: all 0.3s;
+        }
+
+        .article-card:hover {
+            border-color: #667eea;
+        }
+
+        .article-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+
+        .platform-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .platform-badge.xiaohongshu {
+            background: #fff1f2;
+            color: #ff2442;
+        }
+
+        .platform-badge.wechat {
+            background: #f0fdf4;
+            color: #059669;
+        }
+
+        .platform-badge.twitter {
+            background: #eff6ff;
+            color: #0284c7;
+        }
+
+        .platform-badge.tiktok {
+            background: #fef2f2;
+            color: #dc2626;
+        }
+
+        .article-card h3 {
+            font-size: 17px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .article-card p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 14px;
+        }
+
+        .article-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 13px;
+            color: #999;
+        }
+
+        .article-stats {
+            display: flex;
+            gap: 16px;
+        }
+
+        /* Footer */
+        footer {
+            background: #fff;
+            border-top: 1px solid #e8e8e8;
+            padding: 60px 0;
+        }
+
+        .footer-content {
+            text-align: center;
+        }
+
+        .footer-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #666;
+            margin-bottom: 24px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+
+        .social-links a {
+            width: 44px;
+            height: 44px;
+            background: #f5f5f5;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #1a1a1a;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .social-links a:hover {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        footer p {
+            font-size: 14px;
+            color: #999;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero-image {
+                flex: 0 0 280px;
+                height: 280px;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 0 20px;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            nav {
+                gap: 20px;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">六木先生</div>
+                <nav>
+                    <a href="#tools">工具</a>
+                    <a href="#projects">项目</a>
+                    <a href="#writing">文章</a>
+                    <a href="#contact">联系</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <span class="hero-label">👋 你好，我是</span>
+                    <h1>六木先生<br><span>AI产品经理</span></h1>
+                    <p>10多年产品经理与产品架构经验，现深耕 AI 与 VibeCoding 领域。专注探索 AI 驱动的产品创新与开发新范式。</p>
+                    <div class="hero-buttons">
+                        <a href="#contact" class="btn btn-primary">关注我</a>
+                        <a href="#writing" class="btn btn-secondary">阅读文章</a>
+                    </div>
+                </div>
+                <div class="hero-image">六</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tools Section -->
+    <section id="tools">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">推荐</span>
+                <h2>AI 工具箱</h2>
+                <p>我推荐的 AI 辅助开发与产品工具</p>
+            </div>
+            <div class="grid">
+                <div class="card">
+                    <div class="card-icon">🤖</div>
+                    <h3>Claude Code</h3>
+                    <p>AI 驱动的代码助手，支持自然语言编程，大幅提升开发效率。</p>
+                    <div class="card-footer">
+                        <span class="card-tag">AI编程</span>
+                        <span class="card-tag">效率</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🎯</div>
+                    <h3>VibeCoding 工具集</h3>
+                    <p>基于直觉与流动态的开发工具，让代码创作如行云流水。</p>
+                    <div class="card-footer">
+                        <span class="card-tag">VibeCoding</span>
+                        <span class="card-tag">开发体验</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-icon">📊</div>
+                    <h3>产品架构设计</h3>
+                    <p>AI 辅助的产品架构设计工具，快速生成系统架构图与文档。</p>
+                    <div class="card-footer">
+                        <span class="card-tag">架构</span>
+                        <span class="card-tag">设计</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">作品</span>
+                <h2>项目 & 产品</h2>
+                <p>我主导设计与开发的 AI 产品项目</p>
+            </div>
+            <div class="grid">
+                <div class="card">
+                    <div class="card-icon">🧠</div>
+                    <h3>AI 智能助手</h3>
+                    <p>基于大模型的智能对话产品，支持多场景应用与深度定制。</p>
+                    <div class="card-footer">
+                        <span class="card-tag">AI产品</span>
+                        <span class="card-tag">LLM</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-icon">⚡️</div>
+                    <h3>Vibe IDE</h3>
+                    <p>新一代 AI 原生开发环境，重新定义编程体验。</p>
+                    <div class="card-footer">
+                        <span class="card-tag">开发工具</span>
+                        <span class="card-tag">VibeCoding</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🏗️</div>
+                    <h3>产品架构平台</h3>
+                    <p>企业级产品架构设计平台，可视化建模与自动化文档生成。</p>
+                    <div class="card-footer">
+                        <span class="card-tag">B2B</span>
+                        <span class="card-tag">架构</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Writing Section -->
+    <section id="writing">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">创作</span>
+                <h2>内容分享</h2>
+                <p>我在各平台分享 AI 产品与 VibeCoding 见解</p>
+            </div>
+            <div class="grid">
+                <div class="article-card">
+                    <div class="article-header">
+                        <span class="platform-badge wechat">💬 公众号</span>
+                    </div>
+                    <h3>AI 产品经理的 VibeCoding 实践</h3>
+                    <p>探索如何用 AI 重构产品开发流程，让编程如呼吸般自然。</p>
+                    <div class="article-meta">
+                        <span>3 天前</span>
+                        <div class="article-stats">
+                            <span>👁 5.2k</span>
+                            <span>❤️ 312</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-header">
+                        <span class="platform-badge xiaohongshu">📱 小红书</span>
+                    </div>
+                    <h3>我用 AI 做产品的 10 个秘诀</h3>
+                    <p>从需求分析到产品落地，AI 如何改变产品经理的工作方式。</p>
+                    <div class="article-meta">
+                        <span>1 周前</span>
+                        <div class="article-stats">
+                            <span>👁 8.6k</span>
+                            <span>❤️ 891</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-header">
+                        <span class="platform-badge twitter">🐦 Twitter</span>
+                    </div>
+                    <h3>The Future of AI-Powered Product Building</h3>
+                    <p>How AI is transforming the way we build products, from idea to launch.</p>
+                    <div class="article-meta">
+                        <span>2 周前</span>
+                        <div class="article-stats">
+                            <span>👁 12k</span>
+                            <span>❤️ 1.4k</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-header">
+                        <span class="platform-badge tiktok">🎵 TikTok</span>
+                    </div>
+                    <h3>5分钟带你了解 VibeCoding</h3>
+                    <p>用短视频展示 AI 辅助编程的魅力，让开发更简单更有趣。</p>
+                    <div class="article-meta">
+                        <span>3 周前</span>
+                        <div class="article-stats">
+                            <span>👁 45k</span>
+                            <span>❤️ 3.8k</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <p class="footer-title">关注我</p>
+                <div class="social-links">
+                    <a href="#">公众号</a>
+                    <a href="#">小红书</a>
+                    <a href="#">Twitter</a>
+                    <a href="#">TikTok</a>
+                </div>
+                <p>© 2024 六木先生. AI + VibeCoding 🚀</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
