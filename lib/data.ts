@@ -1,17 +1,22 @@
 // 网站配置数据 - 方便统一管理内容
 
+// 从 content.ts 导入内容获取函数
+export { getAllTools, getAllPosts, getToolBySlug, getPostBySlug, getAllTags, getAllCategories } from './content';
+
 export const siteConfig = {
   name: "六木先生",
   title: "AI产品经理",
   description: "10多年产品经理与产品架构经验，现深耕 AI 与 VibeCoding 领域",
   copyright: "© 2024 六木先生. AI + VibeCoding 🚀",
+  url: "https://liumu.app",
 };
 
 export const navItems = [
-  { name: "工具", href: "#tools" },
-  { name: "项目", href: "#projects" },
-  { name: "文章", href: "#writing" },
-  { name: "联系", href: "#contact" },
+  { name: "首页", href: "/" },
+  { name: "工具", href: "/tools" },
+  { name: "文章", href: "/posts" },
+  { name: "关于", href: "/about" },
+  { name: "搜索", href: "/search" },
 ];
 
 export const tools = [
