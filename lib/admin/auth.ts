@@ -11,7 +11,7 @@ const SESSION_DURATION = 7 * 24 * 60 * 60 * 1000; // 7天
 // 默认密码哈希 (密码: admin123)
 // 生产环境应该从环境变量读取
 const DEFAULT_PASSWORD_HASH = process.env.ADMIN_PASSWORD_HASH ||
-  '$2a$10$rXjQZQqZQZQZQZQZQZQZQuR.5YmYmYmYmYmYmYmYmYmYmYmYmYmY';
+  '$2b$10$5HV41ZmmCLK2308KQEpsA.BsT0Kl.QtQ/9z.6i1AzqqS1Cx4bZUfK';
 
 // 简单的内存存储 (生产环境应使用数据库或Redis)
 const sessions = new Map<string, AdminSession>();
