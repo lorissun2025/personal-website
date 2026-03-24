@@ -1,12 +1,30 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { format } from 'date-fns';
 import { zhCN } from 'date-fns/locale';
 import type { Post } from '@/types/content';
 
 export default function PostsPage() {
+  const router = useRouter();
+  const [posts, setPosts] = useState<Post[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [filter, setFilter] = useState<'all' | 'published' | 'draft'>('all');
+
+  useEffect(() => {
+    // 检查认证
+    fetch('/api/admin/auth')
+      .then(res => res.json())
+      .then(data => {
+        if (!data.authenticated) {
+          router.push('/admin/login');
+          return;
+        }
+        fetchPosts();
+      });
+  }, [router]);
   const [posts, setPosts] = useState<Post[]>([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState<'all' | 'published' | 'draft'>('all');

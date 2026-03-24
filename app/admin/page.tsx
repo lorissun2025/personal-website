@@ -1,7 +1,15 @@
 import Link from 'next/link';
+import { redirect } from 'next/navigation';
 import { getAllPosts, getAllTools } from '@/lib/content';
+import { isAuthenticated } from '@/lib/admin/auth';
 
 export default async function AdminPage() {
+  // 检查认证
+  const authenticated = await isAuthenticated();
+  if (!authenticated) {
+    redirect('/admin/login');
+  }
+
   const posts = await getAllPosts();
   const tools = await getAllTools();
 
